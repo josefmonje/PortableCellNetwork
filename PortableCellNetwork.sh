@@ -94,6 +94,7 @@ echo -e "\e[1;32mINSTALL Yate & YateBTS\e[0m"
 
 #git clone https://github.com/strcpyblog/SubversiveBTS.git
 #cd SubversiveBTS/yate
+cd /tmp/
 wget http://yate.null.ro/tarballs/yate5/yate-5.5.0-1.tar.gz
 dtrx --one rename yate-5.5.0-1.tar.gz
 cd /tmp/yate-5.5.0-1
@@ -102,7 +103,8 @@ cd /tmp/yate-5.5.0-1
 make -j4
 make install > /var/log/Yate_install.log
 ldconfig
-cd /tmp/SubversiveBTS/yatebts
+#cd /tmp/SubversiveBTS/yatebts
+cd /tmp/
 wget http://yate.null.ro/tarballs/yatebts5/yate-bts-5.0.0-1.tar.gz
 dtrx --one rename yate-bts-5.0.0-1.tar.gz
 cd /tmp/yate-bts-5.0.0-1
