@@ -40,7 +40,7 @@ apt-get -y update && apt-get -y upgrade
 
 #INSTALL LOGISTICAL DEPENDENCIES
 echo -e "\e[1;32mINSTALL LOGISTICAL DEPENDENCIES\e[0m"
-apt-get install -y git python-setuptools python-dev swig libccid pcscd pcsc-tools python-pyscard libpcsclite1 unzip firefox-esr xserver-xorg lightdm xfce4 cmake automake matchbox-keyboard unzip
+apt-get install -y git python-setuptools python-dev swig libccid pcscd pcsc-tools python-pyscard libpcsclite1 unzip firefox-esr xserver-xorg lightdm xfce4 cmake automake matchbox-keyboard unzip dtrx
 #Setup PySIM - If PySIM current version worked we would use this method commented. Falling back to old commit for intended operation
 cd /usr/src
 #   git clone git://git.osmocom.org/pysim pysim
@@ -91,15 +91,21 @@ fi
 
 #INSTALL Yate & YateBTS
 echo -e "\e[1;32mINSTALL Yate & YateBTS\e[0m"
-cd /tmp
-git clone https://github.com/strcpyblog/SubversiveBTS.git
-cd SubversiveBTS/yate
+
+#git clone https://github.com/strcpyblog/SubversiveBTS.git
+#cd SubversiveBTS/yate
+wget http://yate.null.ro/tarballs/yate5/yate-5.5.0-1.tar.gz
+dtrx --one rename yate-5.5.0-1.tar.gz
+cd /tmp/yate-5.5.0-1
 ./autogen.sh
 ./configure --prefix=/usr/local
 make -j4
 make install > /var/log/Yate_install.log
 ldconfig
 cd /tmp/SubversiveBTS/yatebts
+wget http://yate.null.ro/tarballs/yatebts5/yate-bts-5.0.0-1.tar.gz
+dtrx --one rename yate-bts-5.0.0-1.tar.gz
+cd /tmp/yate-bts-5.0.0-1
 ./autogen.sh
 ./configure --prefix=/usr/local
 make -j4
